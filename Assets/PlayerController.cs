@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 mouvement;
     public float speed;
     private float acc;
+    private Vector3 mouvementSubmarine;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,28 +22,28 @@ public class PlayerController : MonoBehaviour
         mouvement = Vector3.zero;
         mouvement.x = Input.GetAxisRaw("Horizontal");
         mouvement.y = Input.GetAxisRaw("Vertical");
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            mouvementSubmarine.x = mouvement.x;
+            acc += 1;
+        }        
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            acc -= 1;
+            if(acc < 0)
+            {
+                mouvementSubmarine.x = -mouvement.x;
+            }
+        }        
+        if(acc == 0)
+        {
+            mouvementSubmarine = mouvement;
+        }
+        
     }
 
     private void FixedUpdate()
     {
-        if (mouvement != Vector3.zero)
-        {
-            Move();
-        }
-        else
-        {
-            acc = speed;
-        }
-
-    }
-
-    void Move()
-    {
-        if (acc < 10)
-        {
-            acc += acc * Time.deltaTime;
-        }
-        _rb.MovePosition(transform.position + mouvement * acc * Time.deltaTime); //Déplacement du joueur
-        print(acc);
+        _rb.MovePosition(transform.position + mouvementSubmarine * acc * Time.deltaTime); //Déplacement du joueur
     }
 }
