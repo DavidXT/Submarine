@@ -258,8 +258,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -306.01, y: 0.001215}
-  m_SizeDelta: {x: 612.01, y: 567.66}
+  m_AnchoredPosition: {x: -261.32, y: 0.0000085831}
+  m_SizeDelta: {x: 522.63, y: 519}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &178463548
 MonoBehaviour:
@@ -310,7 +310,7 @@ GameObject:
   - component: {fileID: 308684569}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -428,8 +428,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -408.12, y: -2.5639}
-  m_SizeDelta: {x: 579.76, y: 567.4564}
+  m_AnchoredPosition: {x: -287.2313, y: 0.00036621}
+  m_SizeDelta: {x: 522.6334, y: 519}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &347403240
 MonoBehaviour:
@@ -489,7 +489,6 @@ GameObject:
   m_Component:
   - component: {fileID: 504129505}
   - component: {fileID: 504129507}
-  - component: {fileID: 504129506}
   m_Layer: 6
   m_Name: Camera
   m_TagString: Untagged
@@ -511,14 +510,6 @@ Transform:
   m_Father: {fileID: 2003440308}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &504129506
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 504129504}
-  m_Enabled: 1
 --- !u!20 &504129507
 Camera:
   m_ObjectHideFlags: 0
@@ -665,7 +656,6 @@ GameObject:
   m_Component:
   - component: {fileID: 736023317}
   - component: {fileID: 736023319}
-  - component: {fileID: 736023318}
   m_Layer: 6
   m_Name: Camera
   m_TagString: Untagged
@@ -687,14 +677,6 @@ Transform:
   m_Father: {fileID: 2003440308}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &736023318
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 736023316}
-  m_Enabled: 1
 --- !u!20 &736023319
 Camera:
   m_ObjectHideFlags: 0
@@ -795,7 +777,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967231
+    m_Bits: 0
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -857,7 +839,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 128.49, y: -123.13}
+  m_AnchoredPosition: {x: 127.63, y: -122.58999}
   m_SizeDelta: {x: 255.25, y: 245.18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1068631005
@@ -908,6 +890,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 0
+  mm_Enemy: {fileID: 3411825920148216142, guid: f272d682574e66345850b206ad1c829f, type: 3}
+  ratio: 1
 --- !u!1 &1117701115
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,7 +994,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -534.94244, y: 156.13928}
+  m_AnchoredPosition: {x: -490.44, y: 136.64}
   m_SizeDelta: {x: 256.1151, y: 245.7214}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1165738684
@@ -1172,7 +1156,7 @@ GameObject:
   - component: {fileID: 2003440305}
   m_Layer: 6
   m_Name: Submarine
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
