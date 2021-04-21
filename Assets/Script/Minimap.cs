@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Minimap : MonoBehaviour
 {
-    public float range;
-    public GameObject mm_Enemy;
     public float ratio;
+    public GameObject mm_Enemy;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,11 +33,11 @@ public class Minimap : MonoBehaviour
             Vector3 minimapPosition = new Vector3(0, 0, 0);
             float distanceToEnemy = Vector3.Distance(player.transform.position, enemy.transform.position);
             float alpha = Mathf.Atan((enemy.transform.position.x-player.transform.position.x)/(enemy.transform.position.y-player.transform.position.y));
-            float newX = Mathf.Cos(alpha) * (distanceToEnemy*ratio);
-            float newY = Mathf.Sin(alpha) * (distanceToEnemy*ratio);
-            minimapPosition.x = (newX + ratio * distanceToEnemy * Mathf.Cos(alpha));
-            minimapPosition.y = (newY + ratio * distanceToEnemy * Mathf.Sin(alpha));
-            Instantiate(mm_Enemy, minimapPosition, Quaternion.identity);
+            float newX = Mathf.Cos(alpha) * (distanceToEnemy*(1/10));
+            float newY = Mathf.Sin(alpha) * (distanceToEnemy*(1/10));
+            minimapPosition.x = (newX + ((1/10)*distanceToEnemy * Mathf.Cos(alpha)));
+            minimapPosition.y = (newY + ((1/10)*distanceToEnemy * Mathf.Sin(alpha)));
+            Instantiate(mm_Enemy, enemy.transform.position, Quaternion.identity);
         }
     }
 }
