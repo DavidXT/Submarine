@@ -516,10 +516,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 62496734}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92f8d962326369d40a1fec71a464808d, type: 3}
+  m_Script: {fileID: 11500000, guid: b558cc4d468b2e84da04a1581d5308a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 2003440304}
+  target: {fileID: 0}
 --- !u!1 &109930213
 GameObject:
   m_ObjectHideFlags: 0
@@ -8229,7 +8229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1938056950}
   m_Layer: 5
-  m_Name: Speed (1)
+  m_Name: RechargeTorpille
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8597,7 +8597,7 @@ MonoBehaviour:
   maxSpeed: 5
   masse: 1
   speed: 0
-  essence: 20
+  essence: 200
   oxygene: 300
   maxOxygene: 0
   torpille: {fileID: 714880160574042434, guid: 2270822e82cc6b649b3e3dc5a40fd782, type: 3}
