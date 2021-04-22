@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     public float speed;
     private Vector3 mouvementSubmarine;
     private float limit;
-    private bool isMoving;
     private bool goForward;
     public float essence;
     private bool isRefuel;
@@ -25,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private int maxTorpille;
     public float cdTorpille;
     public float cdRechargeTorpille;
+    public int limitMoteur=0;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +32,6 @@ public class PlayerController : MonoBehaviour
         acc = 1f;
         limit = acc;
         maxFuel = essence;
-        isMoving = false;
         goForward = false;
         speed = 0;
         masse = 1;
@@ -62,11 +61,11 @@ public class PlayerController : MonoBehaviour
             {
                 goForward = true;
             }
-            isMoving = false;
+            limitMoteur = 0;
         }
         if (isRefuel)
         {
-            essence += 2f * Time.deltaTime;
+            essence += 10f * Time.deltaTime;
             if (essence >= maxFuel)
             {
                 essence = maxFuel;
@@ -77,51 +76,58 @@ public class PlayerController : MonoBehaviour
         /* Déplacement */
         if (Input.GetKeyDown(KeyCode.RightArrow) && essence > 0 && !isRefuel && !rechargeOxygene)
         {
-            if (speed == 0)
+            if(limitMoteur < maxSpeed)
             {
-                isMoving = true;
+                limitMoteur++;
             }
-            else
+            if (limitMoteur > 0)
             {
-                isMoving = false;
+                goForward = true;
             }
-            goForward = true;
+
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow) && essence > 0 && !isRefuel && !rechargeOxygene)
         {
-            if(speed == 0)
+            if (limitMoteur > -maxSpeed)
             {
-                isMoving = true;
+                limitMoteur--;
             }
-            else
+            if (limitMoteur < 0)
             {
-                isMoving = false;
+                goForward = false;
             }
-            goForward = false;
         }
-        if (isMoving && essence > 0)
+        if (limitMoteur!=0 && essence > 0)
         {
             if(goForward == true)
             {
-                speed += (acc / masse) * Time.deltaTime;
-                essence -= Time.deltaTime;
-                if (speed >= maxSpeed)
+
+                essence -= 2f * Time.deltaTime;
+                if (speed >= limitMoteur)
                 {
-                    speed = maxSpeed;
+                    speed -= Time.deltaTime ;
+                }
+                else
+                {
+                    speed += (acc / masse) * Time.deltaTime;
                 }
             }
             else
             {
-                speed -= (acc / masse) * Time.deltaTime;
-                essence -= Time.deltaTime;
-                if (speed <= -maxSpeed)
+
+                essence -= 2f * Time.deltaTime;
+                if (speed <= limitMoteur)
                 {
-                    speed = -maxSpeed;
+                    speed += Time.deltaTime;
+                }
+                else
+                {
+                    speed -= (acc / masse) * Time.deltaTime;
                 }
             }
         } else
         {
-            if(essence <= 0)
+            if (essence <= 0)
             {
                 if (goForward == true)
                 {
@@ -142,18 +148,18 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                if (goForward == false)
+                if (goForward == true)
                 {
                     speed -= (2 * acc / masse) * Time.deltaTime;
-                    if (goForward == false && speed <= 0)
+                    if (goForward == true && speed <= 0)
                     {
                         speed = 0;
                     }
                 }
-                if (goForward == true)
+                if (goForward == false)
                 {
                     speed += (2 * acc / masse) * Time.deltaTime;
-                    if (goForward == true && speed >= 0)
+                    if (goForward == false && speed >= 0)
                     {
                         speed = 0;
                     }
@@ -182,13 +188,13 @@ public class PlayerController : MonoBehaviour
             {
                 goForward = true;
             }
-            isMoving = false;
+            limitMoteur = 0;
         }
         if (!rechargeOxygene)
         {
             if(oxygene > 0)
             {
-                oxygene -= 5 * Time.deltaTime;
+                oxygene -= 3 * Time.deltaTime;
             }
         }
         else

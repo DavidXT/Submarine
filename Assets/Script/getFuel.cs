@@ -18,7 +18,7 @@ public class getFuel : MonoBehaviour
     void Update()
     {
         float fuel = playerscript.essence;
-        arrowRotation = -9 * fuel + 90; 
+        arrowRotation = -0.9f * fuel + 90; 
         transform.rotation = Quaternion.Euler(0, 0, arrowRotation); ;
     }
 }
