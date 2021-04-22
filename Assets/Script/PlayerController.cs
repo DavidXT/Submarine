@@ -20,6 +20,11 @@ public class PlayerController : MonoBehaviour
     public float oxygene;
     private bool rechargeOxygene;
     public float maxOxygene;
+    public GameObject torpille;
+    public int nbTorpille;
+    private int maxTorpille;
+    public float cdTorpille;
+    public float cdRechargeTorpille;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,11 +39,18 @@ public class PlayerController : MonoBehaviour
         isRefuel = false;
         rechargeOxygene = false;
         maxOxygene = oxygene;
+        nbTorpille = 5;
+        maxTorpille = nbTorpille;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SpawnTorpille();
+        }
         /* Fuel */
         if (Input.GetKeyDown(KeyCode.R)){
             isRefuel = true;
@@ -174,11 +186,14 @@ public class PlayerController : MonoBehaviour
         }
         if (!rechargeOxygene)
         {
-            oxygene -= 1 * Time.deltaTime;
+            if(oxygene > 0)
+            {
+                oxygene -= 5 * Time.deltaTime;
+            }
         }
         else
         {
-            oxygene += 2 * Time.deltaTime;
+            oxygene += 20 * Time.deltaTime;
             if(oxygene >= maxOxygene)
             {
                 oxygene = maxOxygene;
@@ -186,10 +201,29 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        /*Reload Torpille*/
+        if (nbTorpille < maxTorpille)
+        {
+            cdTorpille += Time.deltaTime;
+            if(cdTorpille >= cdRechargeTorpille)
+            {
+                nbTorpille++;
+                cdTorpille = 0;
+            }
+        }
     }
 
     private void FixedUpdate()
     {
          _rb.MovePosition(transform.position + transform.right * speed * Time.deltaTime); //Déplacement du joueur
+    }
+
+    private void SpawnTorpille()
+    {
+        if (nbTorpille>0)
+        {
+            nbTorpille--;
+            GameObject tempObj = Instantiate(torpille, transform.right + transform.position, transform.rotation);
+        }
     }
 }
